@@ -8,5 +8,6 @@
 	</head>
 	<body>
 		<h1 align="center"><a href="/Floracion/mtest">첫 페이지</a></h1>
+		<h1 align="center"><a href="/Floracion/mtest">첫 페이지</a></h1>
 	</body>
 </html>
