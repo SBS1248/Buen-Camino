@@ -1,0 +1,443 @@
+body {
+    background-color: #F2ECE9;
+    margin: 0px;
+}
+
+.hide {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    padding: 15px;
+    margin: 0px;
+    width: 100%;
+    height: 33px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: #F27E9D;
+    z-index: 1;
+}
+
+header img {
+    float: left;
+    cursor: pointer;
+}
+
+header h1 {
+    /*text-align:center;*/
+    position: absolute;
+    left: 45%;
+    padding: 0px;
+    margin: 0px;
+    top: 10%;
+    font-family: "Bauhaus 93", "Berlin Sans", calibri, arial, verdana, helvetica, sans-serif;
+}
+
+#MSearch {
+    position: absolute;
+    right: 20%;
+}
+
+header div {
+    position: absolute;
+    right: 5%;
+}
+
+header ul {
+    margin-top: 24px;
+    margin-left: 0px;
+    background: rgba(109, 109, 109, .9);
+    display: none;
+    height: auto;
+    padding: 9px;
+    position: absolute;
+    width: 150px;
+    list-style: none;
+}
+
+header ul li a {
+    color: white;
+}
+
+#MInt {
+    width: 65%;
+    height: 50%;
+    margin: auto;
+    margin-top: 100px;
+    padding: 10px;
+    background-color: #FFF1CC;
+}
+
+.MImg {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.MImg img {
+    width: 100%;
+    height: 100%;
+}
+
+#MTxt {
+    float: left;
+    width: 40%;
+    height: 100%;
+    margin-left: 10px;
+    text-align: left;
+}
+
+#Project_Sort {
+    width: 76%;
+    height: 20px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.selected {
+    color: #F27E9D;
+    font-weight: 900;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+#see_all {
+    right: 190px;
+    position: absolute;
+}
+
+#MProject {
+    width: 80%;
+    /*    height: 90%;*/
+    height: auto;
+    margin: auto;
+    margin-top: 0px;
+}
+
+#MProject table {
+    width: 100%;
+    height: 100%;
+}
+
+#MProject td {
+    vertical-align: top;
+    width: 200px;
+    height: 650px;
+    padding: 0px;
+    background: white;
+}
+
+#Project1 {
+    width: 100%;
+    height: 100%;
+}
+
+#Project5 {
+    width: 100%;
+    height: 100%;
+}
+
+#Project1_img {
+    margin: 0px;
+    width: 100%;
+    height: 50%;
+    background-image: url(img/img_1.jpg);
+    background-size: 100% 100%;
+}
+
+#Project1_txt {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+#Project1_Percent {
+    width: 40%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+#Project2_img {
+    margin: 0px;
+    width: 100%;
+    height: 50%;
+    background-image: url(img/img_2.jpg);
+    background-size: 100% 100%;
+}
+
+#Project2_txt {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+#Project2_Percent {
+    width: 20%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+#Project3_img {
+    margin: 0px;
+    width: 100%;
+    height: 50%;
+    background-image: url(img/img_3.jpg);
+    background-size: 100% 100%;
+}
+
+#Project3_txt {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+#Project3_Percent {
+    width: 50%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+#Project4_img {
+    margin: 0px;
+    width: 100%;
+    height: 50%;
+    background-image: url(img/img_4.jpg);
+    background-size: 100% 100%;
+}
+
+#Project4_txt {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+#Project4_Percent {
+    width: 100%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+#Project5_img {
+    margin: 0px;
+    width: 100%;
+    height: 50%;
+    background-image: url(img/img_1.jpg);
+    background-size: 100% 100%;
+}
+
+#Project5_txt {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+#Project5_Percent {
+    width: 40%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+#Project6_img {
+    margin: 0px;
+    width: 100%;
+    height: 50%;
+    background-image: url(img/img_2.jpg);
+    background-size: 100% 100%;
+}
+
+#Project6_txt {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+#Project6_Percent {
+    width: 20%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+#Project7_img {
+    margin: 0px;
+    width: 100%;
+    height: 50%;
+    background-image: url(img/img_3.jpg);
+    background-size: 100% 100%;
+}
+
+#Project7_txt {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+#Project7_Percent {
+    width: 50%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+#Project8_img {
+    margin: 0px;
+    width: 100%;
+    height: 50%;
+    background-image: url(img/img_4.jpg);
+    background-size: 100% 100%;
+}
+
+#Project8_txt {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+#Project8_Percent {
+    width: 100%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+.BGGraph {
+    width: 100%;
+    height: 13px;
+    border-radius: 10px;
+    background-color: dimgray;
+}
+
+h3 {
+    margin-left: 11%;
+    margin-bottom: 0px;
+}
+
+#MCategory {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    margin-top: 0px;
+}
+
+#MCategory table {
+    width: 99%;
+    margin: auto;
+}
+
+#MCategory img {
+    width: 100%;
+    height: 18%;
+}
+
+footer {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 76%;
+    height: 18%;
+    margin: auto;
+    background-color: black;
+}
+
+footer div {
+    padding: 10px;
+    color: white;
+    text-align: right;
+}
+
+footer a {
+    color: white;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid #ffffff;
+    margin: 1em 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+ ::-webkit-scrollbar-button:end:increment {
+    display: block;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    width: 50px;
+    background: #babcc1;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+
+html {
+    scrollbar-3dLight-Color: #efefef;
+    scrollbar-arrow-color: #dfdfdf;
+    scrollbar-base-color: #efefef;
+    scrollbar-Face-Color: #dfdfdf;
+    scrollbar-Track-Color: #efefef;
+    scrollbar-DarkShadow-Color: #efefef;
+    scrollbar-Highlight-Color: #efefef;
+    scrollbar-Shadow-Color: #efefef
+}
+
+
+.headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+}
+.headroom--pinned {
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
+}
