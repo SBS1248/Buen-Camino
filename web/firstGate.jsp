@@ -7,9 +7,6 @@
 <title>Floracion</title>
 <script type="text/javascript" scr="views/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
-	function main() {
-		location.href = "./main.jsp";
-	}
 </script>
 <style>
 div.title {
@@ -56,7 +53,7 @@ hr {
 
 	<hr>
 	<div class="btn" align="center">
-		<a href=""><button type="button" onclick="main();">Go to
+		<a href="./main.jsp"><button type="button">Go to
 				WebSite</button></a>
 	</div>
 

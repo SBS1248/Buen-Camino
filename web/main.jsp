@@ -25,27 +25,13 @@
 
             $('.MImg').slick({
             });
-
-            var myElement = document.querySelector("header");
-            var headroom = new Headroom(myElement, {
-                "tolerance": 10,
-                "offset": 205,
-                "classes": {
-                    "initial": "animated",
-                    "pinned": "slideDown",
-                    "unpinned": "slideUp",
-                    "top": "headroom--top",
-                    "notTop": "headroom--not-top"
-                }
-            });
-            headroom.init();
         });
 
     </script>
 </head>
 
 <body>
-    <header id="site-header" class="animated">
+    <header>
         <ul id="menu">
             <li><a href="" class="selected">게임</a></li>
             <br>
@@ -86,9 +72,6 @@
             <div><img src="./img/Floracion_main.jpg" alt="메인사진"></div>
             <div><img src="./img/img_1.jpg" alt="메인사진"></div>
             <div><img src="./img/img_2.jpg" alt="메인사진"></div>
-            <div>
-                <div style="position:relative;height:0;padding-bottom:56.21%;"><iframe src="https://www.youtube.com/embed/PKJ5j7DIhyk?ecver=2&autoplay=1&controls=0&autohide=1&rel=0;" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" allowfullscreen controls="0"></iframe></div>
-            </div>
         </div>
         <div id="MTxt">
             <h3>Floracion 소개글</h3><br> Floracion 소개글입니다. Floracion 소개글입니다. Floracion 소개글입니다. Floracion 소개글입니다. Floracion 소개글입니다. Floracion 소개글입니다. Floracion 소개글입니다.
@@ -97,7 +80,7 @@
     <br><br><br>
 
     <!--    카테고리 목록 -->
-    <h3>카테고리 목록</h3>
+    <h3 id="CList">카테고리 목록</h3>
     <div id="MCategory">
         <table cellpadding="10">
             <tr>
