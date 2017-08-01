@@ -4,14 +4,15 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Floracion</title>
     <link rel="stylesheet" href="./floracion_main.css">
     <link rel="stylesheet" href="./slick/slick.css">
     <link rel="stylesheet" href="./slick/slick-theme.css">
     <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="./slick/slick.min.js"></script>
     <script type="text/javascript" src="./Headroom.js"></script>
+    <meta charset="UTF-8">
+    <title>Floracion</title>
+
     <script type="text/javascript">
         $(function() {
             $('#menuclk').on('click', function() {
