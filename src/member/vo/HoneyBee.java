@@ -1,5 +1,8 @@
 package member.vo;
 
-public class HoneyBee {
+import java.sql.Date;
 
+public class HoneyBee extends Member
+{
+	
 }

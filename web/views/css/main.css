@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+.background-window 
+{
+	border: 0px;
+	width: 350px;
+	height: 400px;
+	background-color: #F2ECE9;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+	background-color: rgba(0, 0, 0, .6);
+	display: none;
+	height: 100%;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	left: 0;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 20;
+}
+
+.in-window
+ {
+	background-color: #f2ece9;
+	border-radius: 6px 6px 5px 5px;
+	margin: auto;
+	width: 30%;
+}
+
+.in-window-head 
+{
+	text-align: center;
+	background-color: #99828a;
+	border-radius: 5px 5px 0px 0px;
+	color: white;
+}
+
+.in-window-content-input
+ {
+	border-color: white;
+	float:right;
+	margin-right: 10px;
+	margin-top:3px;
+	width:55%;
+}
+
+
+span.inputs 
+{
+	text-align: left;
+	margin-left: 10px;
+}
+
+.radio
+{
+	text-align:center;
+	border-color:rgba(0, 0, 0, 1)
+}
+
+#reset
+{
+	display:none;
+}
+
+p.inputs 
+{
+	border-color: red;
+	text-align: left;
+	margin-left: 10px;
+}
+
+.in-window-button-div
+{
+	text-align:center;
+}
+
+.authButton 
+{
+	border: none;
+	background: #8c7280;
+	width: 50px;
+	height: 20px;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+
+.selectButton 
+{
+	border: none;
+	background: #8c7280;
+	width: 50px;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	margin-top: 20px;
+	color: white;
+} 
+
+#cateTable
+{
+	border-spacing:20px 10px;
+}
+
+#cateTable td
+{
+	vertical-align: top;
+}

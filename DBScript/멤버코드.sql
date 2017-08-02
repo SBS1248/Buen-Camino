@@ -1,0 +1,33 @@
+CREATE OR REPLACE FUNCTION MemberCode(CODE CHAR)
+RETURN VARCHAR2
+IS
+    MEMBER VARCHAR2(11); 
+    n NUMBER:=0;--사용자 숫자
+    n1 NUMBER:=0;
+    n2 NUMBER:=0;
+    max1 VARCHAR2(13);--최대값 숫자 멤버 테이블
+    max2 VARCHAR2(13);--최대값 숫자 삭제 테이블
+BEGIN
+    IF CODE='H' 
+    THEN 
+        EXECUTE IMMEDIATE 'SELECT MAX(MHCODE) FROM HONEYBEE' INTO max1;
+        EXECUTE IMMEDIATE 'SELECT MAX(MCODE) FROM LEAVEMEMBER WHERE FLAG=''H'' ' INTO max2;
+        MEMBER:='H';
+        
+    ELSIF CODE='B'
+    THEN
+         EXECUTE IMMEDIATE 'SELECT MAX(MBCODE) FROM BLOOMER' INTO max1;
+         EXECUTE IMMEDIATE 'SELECT MAX(MCODE) FROM LEAVEMEMBER WHERE FLAG=''B'' ' INTO max2;
+         MEMBER:='B';
+    END IF;    
+    
+    n1:=TO_NUMBER(SUBSTR(MAX1,2));
+    n2:=TO_NUMBER(SUBSTR(MAX2,2));
+    
+    IF n1>n2 THEN n:=n1+1;
+    ELSE n:=n2+1;
+    END IF;
+       
+    RETURN MEMBER||n;
+END;
+/
