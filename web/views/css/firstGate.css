@@ -1,0 +1,48 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@charset "UTF-8";
+body
+{
+    cursor: pointer;
+}
+#bg
+{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background:rgba(0,0,0,.7);
+}
+.container
+{
+    position: fixed;
+    top: 40%;
+    left:40%;
+    width: auto;
+    margin: -50px 0 0 -50px;
+    color: white;
+}
+.container h1
+{
+    font-size: 800%;
+    font-family: "Nanum Gothic", sans-serif;
+}
+
+.container h3
+{
+    text-align: right;
+}
+#videobcg
+{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1000;
+    overflow: hidden;
+}
