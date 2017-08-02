@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.service.MemberService;
+import member.vo.*;
+
 /**
  * Servlet implementation class MemberInsertServlet
  */
@@ -27,7 +30,41 @@ public class MemberInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		
+		int result=0;
+		Member member=null;
+		
+		String radio=request.getParameter("radio");
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd1");
+		String nick=request.getParameter("nick");
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");		
+		
+		if(radio.equals("B")) 
+		{
+			member=new Bloomer();
+			member.setId(id);
+			member.setPwd(pwd);
+			member.setNick(nick);
+			member.setEmail(email);
+			member.setPhone(phone);
+		}
+		else
+		{
+			member=new HoneyBee();
+			member.setId(id);
+			member.setPwd(pwd);
+			member.setNick(nick);
+			member.setEmail(email);
+			member.setPhone(phone);
+		}
+		
+		result=new MemberService().insertMember(member);
+		
+		response.getWriter().append(String.valueOf(result));		
 	}
 
 	/**

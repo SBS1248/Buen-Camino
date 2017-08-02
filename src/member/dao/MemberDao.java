@@ -15,47 +15,52 @@ public class MemberDao
 		int result=-1;
 		PreparedStatement pstmt=null;
 		String query=null;
-		
+
 		Connection con=getConnection();
+
 		try 
 		{
 			if(member instanceof Bloomer)
 			{
-				query="INSERT INTO BLOOMER VALUES('B'||MemberCode('B'),?,?,?,?,?,?,SYSDATE,NULL,?,?,?)";
+				Bloomer b=(Bloomer)member;
 				
-				pstmt=con.prepareStatement(query);				
-				pstmt.setString(1, member.getId());
-				pstmt.setString(2, member.getPwd());
-				pstmt.setString(3, member.getNick());
-				pstmt.setString(4, member.getEmail());
-				pstmt.setString(5, member.getPhone());
-				pstmt.setString(6, ((Bloomer) member).getLeader());
-				pstmt.setString(7, member.getCategory1());
-				pstmt.setString(8, member.getCategory2());
-				pstmt.setString(9, member.getCategory3());
-				
-				result=pstmt.executeUpdate();				
+				query="INSERT INTO BLOOMER VALUES(MemberCode('B'),?,?,?,?,NULL,SYSDATE,NULL,?,?,?)";
+
+				pstmt=con.prepareStatement(query);		
+				pstmt.setString(1, b.getEmail());
+				pstmt.setString(2, b.getPwd());
+				pstmt.setString(3, b.getNick());				
+				pstmt.setString(4, b.getPhone());
+				pstmt.setString(5, b.getCategory1());
+				pstmt.setString(6, b.getCategory2());
+				pstmt.setString(7, b.getCategory3());
+
+				result=pstmt.executeUpdate();		
 			}
 			else
 			{
-				query="INSERT INTO BLOOMER VALUES('H'||MemberCode('H'),?,?,?,?,?,SYSDATE,NULL,?,?,?)";
+				HoneyBee h=(HoneyBee)member;
+				query="INSERT INTO HONEYBEE VALUES(MemberCode('H'),?,?,?,?,SYSDATE,NULL,?,?,?)";
 				
-				pstmt=con.prepareStatement(query);				
-				pstmt.setString(1, member.getId());
-				pstmt.setString(2, member.getPwd());
-				pstmt.setString(3, member.getNick());
-				pstmt.setString(4, member.getEmail());
-				pstmt.setString(5, member.getPhone());
-				pstmt.setString(7, member.getCategory1());
-				pstmt.setString(8, member.getCategory2());
-				pstmt.setString(9, member.getCategory3());
+				pstmt=con.prepareStatement(query);	
+				pstmt.setString(1, h.getEmail());
+				pstmt.setString(2, h.getPwd());
+				pstmt.setString(3, h.getNick());
+				pstmt.setString(4, h.getPhone());
+				pstmt.setString(5, h.getCategory1());
+				pstmt.setString(6, h.getCategory2());
+				pstmt.setString(7, h.getCategory3());
 				
 				result=pstmt.executeUpdate();				
 			}
 		} 
 		catch (Exception e)
+		{//오류 나는 조건은 이메일 중복뿐
+			//System.out.println(e.getMessage());
+		}
+		finally 
 		{
-			e.printStackTrace();
+			close(pstmt);
 		}
 		
 		return result;

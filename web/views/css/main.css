@@ -11,7 +11,7 @@
 	-ms-flex-align: start;
 	align-items: flex-start;
 	background-color: rgba(0, 0, 0, .6);
-	/*  display: none;  */
+	display: none;
 	height: 100%;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
@@ -30,8 +30,7 @@
 	background-color: #f2ece9;
 	border-radius: 6px 6px 5px 5px;
 	margin: auto;
-	width: 20%;
-	z-index: 25;
+	width: 30%;
 }
 
 .in-window-head 
@@ -44,12 +43,13 @@
 
 .in-window-content-input
  {
-	border: none;
-	float: right;
+	border-color: white;
+	float:right;
 	margin-right: 10px;
 	margin-top:3px;
-	width:60%;
+	width:55%;
 }
+
 
 span.inputs 
 {
@@ -57,7 +57,41 @@ span.inputs
 	margin-left: 10px;
 }
 
-.in-window-content-button 
+.radio
+{
+	text-align:center;
+	border-color:rgba(0, 0, 0, 1)
+}
+
+#reset
+{
+	display:none;
+}
+
+p.inputs 
+{
+	border-color: red;
+	text-align: left;
+	margin-left: 10px;
+}
+
+.in-window-button-div
+{
+	text-align:center;
+}
+
+.authButton 
+{
+	border: none;
+	background: #8c7280;
+	width: 50px;
+	height: 20px;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+
+.selectButton 
 {
 	border: none;
 	background: #8c7280;
@@ -67,4 +101,14 @@ span.inputs
 	border-radius: 5px;
 	margin-top: 20px;
 	color: white;
+} 
+
+#cateTable
+{
+	border-spacing:20px 10px;
+}
+
+#cateTable td
+{
+	vertical-align: top;
 }

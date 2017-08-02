@@ -15,5 +15,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/smtp.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>
