@@ -16,8 +16,23 @@ public class MemberService
 		Connection con=getConnection();
 		
 		result=new MemberDao().insertMember(member);
+				
+		close(con);
 		
 		return result;
+	}
+
+	public Member login(String email, String pwd)
+	{
+		Member member=null;
+		
+		Connection con=getConnection();
+		
+		member=new MemberDao().login(con,email,pwd);
+		
+		close(con);
+		
+		return member;
 	}
 
 }

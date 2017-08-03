@@ -461,6 +461,62 @@
 			</div>			
 		</div>
 
+		<!-- 로그인 -->
+		<div class="background-window" id="bWindow5">
+			<div class="in-window">
+				<h3 class="in-window-head">로그인</h3>
+				
+				<div class="in-window-content">	
+						<div>
+							<table align="center" style="width:30%">
+								<tr>
+									<td>
+										<span class="inputs">이메일 </span> <input type="email" class="in-window-content-input" name="uemail">
+									</td>
+									<td style="text-align:center;">
+										<input type="button" class="authButton" value="인증" id="duplicate">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span class="inputs">암호 </span> <input type="password" class="in-window-content-input" name="upwd1">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span class="inputs">암호확인 </span> <input type="password" class="in-window-content-input" name="upwd2">
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<span class="inputs">닉네임</span> <input type="text" class="in-window-content-input" name="unick">
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<span class="inputs">연락처 </span> <input type="text" class="in-window-content-input" name="uphone">
+									</td>
+								</tr>
+							</table>
+						</div>
+						
+						<div>
+						
+						</div>
+						
+						<div class="in-window-button-div">						
+							<input type="submit" class="selectButton" value="가입" id="Minsert">
+							 &nbsp; &nbsp;
+							<input type="button" class="selectButton" value="취소" name="cancle">
+						</div>
+					
+					<br>
+				</div>
+				
+			</div>
 			
+		</div>	
 	</body>
 </html>
