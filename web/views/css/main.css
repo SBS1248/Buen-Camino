@@ -1,3 +1,7 @@
+.navbar-default
+{
+    padding-right: 20px;
+}
 .navbar-text {
     position: absolute;
     left: 45%;
@@ -13,4 +17,110 @@
     left: 5px;
     top: 40px;
     list-style: none;
+    background-color: white;
+}
+
+.carousel-inner {
+    margin-top: 50px;
+}
+
+.carousel-inner img {
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%);
+    /* make all photos black and white */
+    width: 100%;
+    /* Set width to 100% */
+    margin: auto;
+}
+
+.carousel-caption h3 {
+    color: #fff !important;
+}
+
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+        /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+}
+
+h3 {
+    width: 85%;
+    margin: auto;
+}
+
+.ProjectList a {
+    color: black;
+    text-decoration: none;
+}
+
+#selected {
+    color: #F27E9D;
+    text-decoration: underline;
+}
+
+.caption p{
+    height: auto;
+    padding: 0px;
+    max-height: 100px;
+    word-break: break-all;
+    overflow: auto;
+}
+
+footer {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 90%;
+    height: 18%;
+    margin: auto;
+    background-color: black;
+}
+
+footer div {
+    padding: 10px;
+    color: white;
+    text-align: right;
+}
+
+footer a {
+    color: white;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid #ffffff;
+    margin: 1em 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+ ::-webkit-scrollbar-button:end:increment {
+    display: block;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    width: 50px;
+    background: #babcc1;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+
+html {
+    scrollbar-3dLight-Color: #efefef;
+    scrollbar-arrow-color: #dfdfdf;
+    scrollbar-base-color: #efefef;
+    scrollbar-Face-Color: #dfdfdf;
+    scrollbar-Track-Color: #efefef;
+    scrollbar-DarkShadow-Color: #efefef;
+    scrollbar-Highlight-Color: #efefef;
+    scrollbar-Shadow-Color: #efefef
 }
