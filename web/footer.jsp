@@ -1,4 +1,12 @@
-<footer>
+<%@ page contentType="text/html; charset=utf-8" %>
+      <style type="text/css">
+    a:hover
+          {
+              color:white;
+              text-decoration: underline;
+          }
+    </style>
+       <footer>
         <div>
             <a href="">채용</a>&nbsp;&nbsp;
             <a href="">가이드</a>&nbsp;&nbsp;

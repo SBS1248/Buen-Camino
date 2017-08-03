@@ -262,5 +262,67 @@ public class MemberDao
 		return result;
 	}
 
+	public Member login(Connection con,String email, String pwd)
+	{
+		Member member=null;
+		PreparedStatement pstmt=null;		
+		ResultSet rset=null;
+		
+		try 
+		{
+			String query="SELECT * FROM BLOOMER WHERE EMAIL=? AND PWD=?";
+			pstmt=con.prepareStatement(query);
+			pstmt.setString(1, email);
+			pstmt.setString(2, pwd);
+			
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) 
+			{				
+				member=new Bloomer();
+				member.setEmail(rset.getString("EMAIL"));
+				member.setPwd(rset.getString("EMAIL"));
+				member.setNick(rset.getString("NICK"));
+				member.setPhone(rset.getString("PHONE"));
+				((Bloomer)member).setLeader(rset.getString("LEADER"));
+				member.setEnrollDay(rset.getDate("ENROLLDAY"));
+				member.setLeaveDay(rset.getDate("LEAVEDA"));
+				member.setCategory1(rset.getString("CATEGORY1"));
+				member.setCategory2(rset.getString("CATEGORY2"));
+				member.setCategory3(rset.getString("CATEGORY3"));			
+			}
+			else 
+			{
+				query="SELECT * FROM HONEYBEE WHERE EMAIL=? AND PWD=?";
+				pstmt=con.prepareStatement(query);
+				pstmt.setString(1, email);
+				pstmt.setString(2, pwd);
+				
+				rset=pstmt.executeQuery();
+				
+				if(rset.next()) 
+				{				
+					member=new HoneyBee();
+					member.setEmail(rset.getString("EMAIL"));
+					member.setPwd(rset.getString("EMAIL"));
+					member.setNick(rset.getString("NICK"));
+					member.setPhone(rset.getString("PHONE"));					
+					member.setEnrollDay(rset.getDate("ENROLLDAY"));
+					member.setLeaveDay(rset.getDate("LEAVEDA"));
+					member.setCategory1(rset.getString("CATEGORY1"));
+					member.setCategory2(rset.getString("CATEGORY2"));
+					member.setCategory3(rset.getString("CATEGORY3"));			
+				}				
+			}
+			
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}		
+		
+		return member;
+	}
+
 	
 }
