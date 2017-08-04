@@ -3,6 +3,7 @@
   <display-name>Floacion</display-name>
   <welcome-file-list>
    <!--  <welcome-file>signIn.jsp</welcome-file> -->
-    <welcome-file>logIn.jsp</welcome-file>
+  <!--   <welcome-file>logIn.jsp</welcome-file> -->
+  		 <welcome-file>editSign.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
