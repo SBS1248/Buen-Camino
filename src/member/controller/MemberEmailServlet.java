@@ -76,7 +76,7 @@ public class MemberEmailServlet extends HttpServlet {
            InternetAddress.parse(to));
 
            // Set Subject: header field
-           message.setSubject("Floración 회원가입 인증번호");
+           message.setSubject("Floración 인증번호");
 
            // Now set the actual message
            message.setText("인증번호 : "+request.getParameter("number"));

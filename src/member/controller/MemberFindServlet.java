@@ -1,34 +1,28 @@
 package member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.json.simple.JSONObject;
 
 import member.service.MemberService;
-import member.vo.Bloomer;
 import member.vo.Member;
 
-
-
 /**
- * Servlet implementation class MemberLoginServlet
+ * Servlet implementation class MemberFindServlet
  */
-@WebServlet("/mlogin")
-public class MemberLoginServlet extends HttpServlet {
+@WebServlet("/mfind")
+public class MemberFindServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLoginServlet() {
+    public MemberFindServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,25 +32,26 @@ public class MemberLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		request.setCharacterEncoding("utf-8");		
-		
-		String radio=request.getParameter("radio");
 		String email=request.getParameter("email");
-		String pwd=request.getParameter("pwd");
+		String radio=request.getParameter("radio");
 		
-		Member member=new MemberService().login(radio,email,pwd);		
+		Member member=new MemberService().findMember(email,radio);
 		
-		HttpSession session=request.getSession();
+		RequestDispatcher view=null;
 		
 		if(member!=null) 
-		{	
-			session.setAttribute("member",member);
-			//메인 피이지가 세션에서 member 객체 퍼가기, bloomer인지 honeybee인지 instanceof로 구분하기 
-			response.sendRedirect("/Floracion/main.jsp");
+		{
+			view=request.getRequestDispatcher("/editSign.jsp");
+			
+			request.setAttribute("member", member);
+			view.forward(request, response);
 		}
 		else 
 		{
-			response.sendRedirect("/Floracion/logIn.jsp");
+			view=request.getRequestDispatcher("/signIn.jsp");
+			
+			request.setAttribute("email", email);
+			view.forward(request, response);			
 		}
 	}
 

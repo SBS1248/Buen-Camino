@@ -10,13 +10,11 @@ public class MemberDao
 {
 	public MemberDao(){}
 	
-	public int insertMember(Member member)
+	public int insertMember(Connection con, Member member)
 	{
 		int result=-1;
 		PreparedStatement pstmt=null;
-		String query=null;
-
-		Connection con=getConnection();
+		String query=null;		
 
 		try 
 		{
@@ -262,36 +260,40 @@ public class MemberDao
 		return result;
 	}
 
-	public Member login(Connection con,String email, String pwd)
+	public Member login(Connection con,String email, String pwd, String radio)
 	{
 		Member member=null;
 		PreparedStatement pstmt=null;		
 		ResultSet rset=null;
+		String query=null;		
 		
 		try 
 		{
-			String query="SELECT * FROM BLOOMER WHERE EMAIL=? AND PWD=?";
-			pstmt=con.prepareStatement(query);
-			pstmt.setString(1, email);
-			pstmt.setString(2, pwd);
-			
-			rset=pstmt.executeQuery();
-			
-			if(rset.next()) 
-			{				
-				member=new Bloomer();
-				member.setEmail(rset.getString("EMAIL"));
-				member.setPwd(rset.getString("EMAIL"));
-				member.setNick(rset.getString("NICK"));
-				member.setPhone(rset.getString("PHONE"));
-				((Bloomer)member).setLeader(rset.getString("LEADER"));
-				member.setEnrollDay(rset.getDate("ENROLLDAY"));
-				member.setLeaveDay(rset.getDate("LEAVEDA"));
-				member.setCategory1(rset.getString("CATEGORY1"));
-				member.setCategory2(rset.getString("CATEGORY2"));
-				member.setCategory3(rset.getString("CATEGORY3"));			
+			if(radio.equals("B")) 
+			{
+				query="SELECT * FROM BLOOMER WHERE EMAIL=? AND PWD=?";
+				pstmt=con.prepareStatement(query);
+				pstmt.setString(1, email);
+				pstmt.setString(2, pwd);
+				
+				rset=pstmt.executeQuery();
+				
+				if(rset.next()) 
+				{				
+					member=new Bloomer();
+					member.setEmail(rset.getString("EMAIL"));
+					member.setPwd(rset.getString("EMAIL"));
+					member.setNick(rset.getString("NICK"));
+					member.setPhone(rset.getString("PHONE"));
+					((Bloomer)member).setLeader(rset.getString("LEADER"));
+					member.setEnrollDay(rset.getDate("ENROLLDAY"));
+					member.setLeaveDay(rset.getDate("LEAVEDA"));
+					member.setCategory1(rset.getString("CATEGORY1"));
+					member.setCategory2(rset.getString("CATEGORY2"));
+					member.setCategory3(rset.getString("CATEGORY3"));			
+				}
 			}
-			else 
+			else
 			{
 				query="SELECT * FROM HONEYBEE WHERE EMAIL=? AND PWD=?";
 				pstmt=con.prepareStatement(query);
@@ -312,9 +314,8 @@ public class MemberDao
 					member.setCategory1(rset.getString("CATEGORY1"));
 					member.setCategory2(rset.getString("CATEGORY2"));
 					member.setCategory3(rset.getString("CATEGORY3"));			
-				}				
-			}
-			
+				}
+			}			
 		} 
 		catch (Exception e)
 		{
@@ -324,5 +325,112 @@ public class MemberDao
 		return member;
 	}
 
-	
+	public Member findMember(Connection con, String email, String radio) 
+	{
+		Member member=null;
+		PreparedStatement pstmt=null;		
+		ResultSet rset=null;
+		
+		String query=null;
+		
+		try 
+		{
+			if(radio.equals("B")) 
+			{
+				query="SELECT * FROM BLOOMER WHERE EMAIL=?";
+				pstmt=con.prepareStatement(query);
+				pstmt.setString(1, email);
+				
+				rset=pstmt.executeQuery();
+				
+				if(rset.next()) 
+				{				
+					member=new Bloomer();
+					member.setEmail(rset.getString("EMAIL"));
+					member.setPwd(rset.getString("PWD"));
+					member.setNick(rset.getString("NICK"));
+					member.setPhone(rset.getString("PHONE"));
+					((Bloomer)member).setLeader(rset.getString("LEADER"));
+					member.setEnrollDay(rset.getDate("ENROLLDAY"));
+					member.setLeaveDay(rset.getDate("LEAVEDA"));
+					member.setCategory1(rset.getString("CATEGORY1"));
+					member.setCategory2(rset.getString("CATEGORY2"));
+					member.setCategory3(rset.getString("CATEGORY3"));			
+				}
+			}
+			else 
+			{
+				query="SELECT * FROM HONEYBEE WHERE EMAIL=?";
+				pstmt=con.prepareStatement(query);
+				pstmt.setString(1, email);
+				
+				rset=pstmt.executeQuery();
+				
+				if(rset.next()) 
+				{								
+					member=new HoneyBee();
+					member.setEmail(rset.getString("EMAIL"));
+					member.setPwd(rset.getString("EMAIL"));
+					member.setNick(rset.getString("NICK"));
+					member.setPhone(rset.getString("PHONE"));					
+					member.setEnrollDay(rset.getDate("ENROLLDAY"));
+					member.setLeaveDay(rset.getDate("LEAVEDA"));
+					member.setCategory1(rset.getString("CATEGORY1"));
+					member.setCategory2(rset.getString("CATEGORY2"));
+					member.setCategory3(rset.getString("CATEGORY3"));			
+				}
+			}		
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}		
+		
+		return member;
+	}
+
+	public int editMember(Connection con, String email, String psw, String nick, String phone, char c)
+	{
+		int result=-1;
+		PreparedStatement pstmt=null;
+		String query=null;	
+
+		try 
+		{
+			if(c=='B')
+			{				
+				query="UPDATE BLOOMER SET PWD=?,NICK=?,PHONE=? WHERE EMAIL=?";
+
+				pstmt=con.prepareStatement(query);		
+				pstmt.setString(1, psw);
+				pstmt.setString(2, nick);
+				pstmt.setString(3, phone);				
+				pstmt.setString(4, email);
+				System.out.println(pstmt.toString());
+				result=pstmt.executeUpdate();		
+			}
+			else
+			{
+				query="UPDATE HONEYBEE SET PWD=?,NICK=?,PHONE=? WHERE EMAIL=?";
+				
+				pstmt=con.prepareStatement(query);		
+				pstmt.setString(1, psw);
+				pstmt.setString(2, nick);
+				pstmt.setString(3, phone);				
+				pstmt.setString(4, email);
+				
+				result=pstmt.executeUpdate();				
+			}
+		} 
+		catch (Exception e)
+		{//오류 나는 조건은 이메일 중복뿐
+			//System.out.println(e.getMessage());
+		}
+		finally 
+		{
+			close(pstmt);
+		}
+		System.out.println("dao result"+result);
+		return result;
+	}
 }

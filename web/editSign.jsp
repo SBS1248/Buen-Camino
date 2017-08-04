@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="member.vo.*" %>
+<% Member member=(Member)request.getAttribute("member");
+	
+	if(member instanceof Bloomer)
+	{
+		member=(Bloomer)member;		
+	}
+	else
+	{
+		member=(HoneyBee)member;
+	}
+	int index=member.getClass().getName().lastIndexOf('.')+1;
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,27 +27,24 @@
 </head>
 
 <body>
-
 	<div class="outter">
 		<h2>회원 정보수정</h2>
 		<div style="border: 1px solid #ccc">
 			<div class="container">
-				<input type="text" placeholder="인증번호" name="inputauth" required
-					style="display: none;"> <input type="password"
-					placeholder="비밀번호" name="psw" required> <input
-					type="password" placeholder="비밀번호 확인" name="psw-repeat" required>
-				<input type="text" placeholder="닉네임" name="nick" required>
-				 <input	type="text" placeholder="연락처" name="phone" required>
-
-				<div class="clearfix">
+				 <input type="text" value="<%=member.getClass().getName().charAt(index)%>" name="radio" style="display:none;">		
+				 <input type="text"	value="<%=member.getEmail()%>"name="email" readonly>
+				 <input type="password"	placeholder="비밀번호" name="psw" required>
+				 <input	type="password" placeholder="비밀번호 확인" name="psw-repeat" required>
+				 <input type="text" placeholder="현재 닉네임 : <%=member.getNick() %>" name="nick" required>
+				 <input	type="text" placeholder="현재 연락처 : <%=member.getPhone() %>" name="phone" required>
+				 
+				 <div class="clearfix">
 					<button type="button" class="cancelbtn" name="cancle">취소</button>
 					<button type="submit" class="signupbtn" name="edit">정보수정</button>
-				</div>				
-
+				</div>	
 			</div>
-
 		</div>
 	</div>
-
+	
 </body>
 </html>
