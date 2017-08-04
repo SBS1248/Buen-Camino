@@ -1,0 +1,73 @@
+/* main.css */
+@import url(https://fonts.googleapis.com/css?family=Amarante);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+
+/* * { background-color : #F27E9D;} */
+/* * { background-color : #8C7280;} */
+/* * { background-color : #FFF1CC;} */
+/* * { background-color : #99828A;} */
+/* * { background-color : #F2ECE9;} */
+
+* {
+	//border: 1px pink dotted;
+}
+
+body {
+	background-color: #F2ECE9;
+}
+
+.navbar {
+	color: black;
+	padding: 15px;
+	background-color: #F2ECE9;
+	border: none;
+	opacity: 0.9;
+}
+
+#home_logo {
+	color: #8C7280;
+	font-family: 'Pacifico', cursive;
+	font-size: 30px;
+	margin: 0;
+}
+
+#home_logo:hover {
+	color: #F27E9D;
+}
+
+#page_name {
+	color: #8C7280;
+	font-size: 30px;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	text-align: center;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.nav.navbar-nav.navbar-right li a {
+	color: #8C7280;
+	font-size: 16px;
+}
+
+.nav.navbar-nav.navbar-right li a:hover {
+	color: #F27E9D;
+}
+
+.container {
+	margin-top: 100px;
+}
+
+.panel {
+	width: 70%;
+	margin: auto;
+	margin-bottom: 15px;
+}
+
+.panel-heading h4 {
+	font-size: 14px;
+	font-weight: bold;
+}
