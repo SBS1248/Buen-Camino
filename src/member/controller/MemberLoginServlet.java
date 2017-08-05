@@ -38,33 +38,26 @@ public class MemberLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");		
 		
+		String radio=request.getParameter("radio");
 		String email=request.getParameter("email");
 		String pwd=request.getParameter("pwd");
 		
-		Member member=new MemberService().login(email,pwd);		
-		JSONObject json = new JSONObject();
+		Member member=new MemberService().login(radio,email,pwd);		
 		
 		HttpSession session=request.getSession();
-		System.out.println("이곳은"+session);
+		
 		if(member!=null) 
 		{	
-			session.setAttribute("email",member.getEmail());
-			session.setAttribute("nick",member.getNick());
-			json.put("member", member.getNick());
-			
+			session.setAttribute("member",member);
+			//메인 페이지가 세션에서 member 객체 퍼가기, bloomer인지 honeybee인지 instanceof로 구분하기 
+			response.sendRedirect("/Floracion/main.jsp");
 		}
 		else 
 		{
-			json.put("member", null);
+			response.sendRedirect("/Floracion/logIn.jsp");
 		}
-		System.out.println(json);
-		response.setContentType("application/json; charset=utf-8"); 
-		PrintWriter out = response.getWriter();
-		out.print(json);
-		out.flush();
-		out.close();
 	}
 
 	/**

@@ -22,13 +22,13 @@ public class MemberService
 		return result;
 	}
 
-	public Member login(String email, String pwd)
+	public Member login(String radio, String email, String pwd)
 	{
 		Member member=null;
 		
 		Connection con=getConnection();
 		
-		member=new MemberDao().login(con,email,pwd);
+		member=new MemberDao().login(con,email,pwd,radio);
 		
 		close(con);
 		

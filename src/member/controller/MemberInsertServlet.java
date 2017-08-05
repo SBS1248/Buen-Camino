@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.service.MemberService;
 import member.vo.*;
@@ -63,7 +64,11 @@ public class MemberInsertServlet extends HttpServlet {
 		}
 		
 		result=new MemberService().insertMember(member);
-		
+	/*	
+		HttpSession session=request.getSession();
+		session.setAttribute("member", member);
+		//카테고리 페이지에서 받고, 다시 메인 페이지로 보내주기
+		*/
 		response.getWriter().append(String.valueOf(result));		
 	}
 
