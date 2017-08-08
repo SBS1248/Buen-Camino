@@ -112,7 +112,7 @@ $(function() {
 							}
 							else
 							{
-								alert("카테고리 페이지로 넘어가라");
+								window.location.href="../Member/memberCate.jsp";
 							}
 						},
 						error:function(isFail)

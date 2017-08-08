@@ -70,6 +70,9 @@ public class MemberInsertServlet extends HttpServlet {
 		//카테고리 페이지에서 받고, 다시 메인 페이지로 보내주기
 		*/
 		response.getWriter().append(String.valueOf(result));		
+		HttpSession session=request.getSession();
+		
+		session.setAttribute("member", member);
 	}
 
 	/**

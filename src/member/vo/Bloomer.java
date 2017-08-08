@@ -19,7 +19,7 @@ public class Bloomer extends Member
 	@Override
 	public String toString()
 	{
-		return "Bloomer [mbcode=" + this.getMbcode() + ", id=" + this.getId() + ", pwd=" + this.getPwd() + ", nick=" + this.getNick() + 
+		return "Bloomer [mbcode=" + this.getMbcode() +", pwd=" + this.getPwd() + ", nick=" + this.getNick() + 
 				", email=" + this.getEmail()+ ", phone=" + this.getPhone() + ", leader=" + this.getLeader() + ", enrollDay=" + this.getEnrollDay() +
 				", leaveDay=" + this.getLeaveDay()+ "]";
 	}

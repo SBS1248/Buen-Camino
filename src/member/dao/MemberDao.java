@@ -48,6 +48,7 @@ public class MemberDao {
 			}
 		} catch (Exception e) {// 오류 나는 조건은 이메일 중복뿐
 								// System.out.println(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
@@ -224,14 +225,15 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = null;
-
+		System.out.println("@@@@@");
+		System.out.println("radio : "+radio);
 		try {
 			if (radio.equals("B")) {
 				query = "SELECT * FROM BLOOMER WHERE EMAIL=? AND PWD=?";
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, email);
 				pstmt.setString(2, pwd);
-
+				System.out.println("@@@@@@@");
 				rset = pstmt.executeQuery();
 
 				if (rset.next()) {
@@ -242,12 +244,14 @@ public class MemberDao {
 					member.setPhone(rset.getString("PHONE"));
 					((Bloomer) member).setLeader(rset.getString("LEADER"));
 					member.setEnrollDay(rset.getDate("ENROLLDAY"));
-					member.setLeaveDay(rset.getDate("LEAVEDA"));
+					member.setLeaveDay(rset.getDate("LEAVEDAY"));
 					member.setCategory1(rset.getString("CATEGORY1"));
 					member.setCategory2(rset.getString("CATEGORY2"));
 					member.setCategory3(rset.getString("CATEGORY3"));
+					System.out.println("#############");
 				}
 			} else {
+				System.out.println("123123");
 				query = "SELECT * FROM HONEYBEE WHERE EMAIL=? AND PWD=?";
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, email);
@@ -262,7 +266,7 @@ public class MemberDao {
 					member.setNick(rset.getString("NICK"));
 					member.setPhone(rset.getString("PHONE"));
 					member.setEnrollDay(rset.getDate("ENROLLDAY"));
-					member.setLeaveDay(rset.getDate("LEAVEDA"));
+					member.setLeaveDay(rset.getDate("LEAVEDAY"));
 					member.setCategory1(rset.getString("CATEGORY1"));
 					member.setCategory2(rset.getString("CATEGORY2"));
 					member.setCategory3(rset.getString("CATEGORY3"));
@@ -274,6 +278,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println("rororrl");
 		return member;
 	}
 
@@ -283,7 +288,7 @@ public class MemberDao {
 		ResultSet rset = null;
 
 		String query = null;
-
+		
 		try {
 			if (radio.equals("B")) {
 				query = "SELECT * FROM BLOOMER WHERE EMAIL=?";
@@ -300,7 +305,7 @@ public class MemberDao {
 					member.setPhone(rset.getString("PHONE"));
 					((Bloomer) member).setLeader(rset.getString("LEADER"));
 					member.setEnrollDay(rset.getDate("ENROLLDAY"));
-					member.setLeaveDay(rset.getDate("LEAVEDA"));
+					member.setLeaveDay(rset.getDate("LEAVEDAY"));
 					member.setCategory1(rset.getString("CATEGORY1"));
 					member.setCategory2(rset.getString("CATEGORY2"));
 					member.setCategory3(rset.getString("CATEGORY3"));
@@ -319,7 +324,7 @@ public class MemberDao {
 					member.setNick(rset.getString("NICK"));
 					member.setPhone(rset.getString("PHONE"));
 					member.setEnrollDay(rset.getDate("ENROLLDAY"));
-					member.setLeaveDay(rset.getDate("LEAVEDA"));
+					member.setLeaveDay(rset.getDate("LEAVEDAY"));
 					member.setCategory1(rset.getString("CATEGORY1"));
 					member.setCategory2(rset.getString("CATEGORY2"));
 					member.setCategory3(rset.getString("CATEGORY3"));
@@ -365,6 +370,46 @@ public class MemberDao {
 			close(pstmt);
 		}
 		System.out.println("dao result" + result);
+		return result;
+	}
+
+	public int insertCate(Connection con, Member member, String cate1, String cate2, String cate3)
+	{
+		int result = -1;
+		PreparedStatement pstmt = null;
+		String query = null;
+
+		try {
+			if (member instanceof Bloomer) {
+				Bloomer b = (Bloomer) member;
+
+				query = "UPDATE BLOOMER SET CATEGORY1=?,CATEGORY2=?,CATEGORY3=? WHERE EMAIL=?";
+
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, cate1);
+				pstmt.setString(2, cate2);
+				pstmt.setString(3, cate3);
+				pstmt.setString(4, member.getEmail());
+
+				result = pstmt.executeUpdate();
+			} else {
+				HoneyBee h = (HoneyBee) member;
+				query = "UPDATE HONEYBEE SET CATEGORY1=?,CATEGORY2=?,CATEGORY3=? WHERE EMAIL=?";
+
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, cate1);
+				pstmt.setString(2, cate2);
+				pstmt.setString(3, cate3);
+				pstmt.setString(4, member.getEmail());
+				
+				result = pstmt.executeUpdate();
+			}
+		} catch (Exception e) {			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
 		return result;
 	}
 }

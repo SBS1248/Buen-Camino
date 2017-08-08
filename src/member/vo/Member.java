@@ -5,7 +5,6 @@ import java.sql.Date;
 public abstract class Member 
 {//테이블에 카테고리 추가하기
 	private String mbcode;
-	private String  id;
 	private String  pwd;
 	private String  nick;
 	private String  email;
@@ -23,7 +22,6 @@ public abstract class Member
 	{
 		super();
 		this.mbcode = mbcode;
-		this.id = id;
 		this.pwd = pwd;
 		this.nick = nick;
 		this.email = email;
@@ -38,7 +36,7 @@ public abstract class Member
 	@Override
 	public String toString()
 	{
-		return "Member [mbcode=" + mbcode + ", id=" + id + ", pwd=" + pwd + ", nick=" + nick + ", email=" + email
+		return "Member [mbcode=" + mbcode + ", pwd=" + pwd + ", nick=" + nick + ", email=" + email
 				+ ", phone=" + phone + ", enrollDay=" + enrollDay + ", leaveDay=" + leaveDay + ", category1="
 				+ category1 + ", category2=" + category2 + ", category3=" + category3 + "]";
 	}
@@ -53,15 +51,7 @@ public abstract class Member
 		this.mbcode = mbcode;
 	}
 
-	public String getId() 
-	{
-		return id;
-	}
 
-	public void setId(String id) 
-	{
-		this.id = id;
-	}
 
 	public String getPwd() 
 	{

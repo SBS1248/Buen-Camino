@@ -49,44 +49,42 @@ DROP TABLE CONFCOMMENT CASCADE CONSTRAINTS;
 
 DROP TABLE PLANFCOMMENT CASCADE CONSTRAINTS;
 
---멤버?��-------------------------------------------------------------------------------
-desc BLOOMER;
+--멤버들-------------------------------------------------------------------------------
+
 CREATE TABLE BLOOMER
-(--?��로젝?�� 참여?��
+(--프로젝트 참여자
     MBCODE VARCHAR2(11) PRIMARY KEY,
-    ID VARCHAR2(20) NOT NULL,
+    EMAIL VARCHAR2(30) NOT NULL UNIQUE,
     PWD VARCHAR2(20) NOT NULL,
-    NICK VARCHAR2(10)  NOT NULL UNIQUE,
-    EMAIL VARCHAR2(30) NOT NULL,
+    NICK VARCHAR2(10)  NOT NULL,
     PHONE VARCHAR2(20) NOT NULL,
     LEADER	VARCHAR2(1),
     ENROLLDAY DATE DEFAULT SYSDATE,
-    LEAVEDA DATE,
+    LEAVEDAY DATE,
     CATEGORY1 VARCHAR2(30),
     CATEGORY2 VARCHAR2(30),
     CATEGORY3 VARCHAR2(30)
     
 );
-
+INSERT INTO BLOOMER VALUES('B1','1@1.com','admin','admin','admin',null,sysdate,null,null,null,null);
 CREATE TABLE HONEYBEE
-(--?��로젝?�� ?��?��?��
+(--프로젝트 후원자
     MHCODE VARCHAR2(11) PRIMARY KEY,
-    ID VARCHAR2(20) NOT NULL,
+    EMAIL VARCHAR2(30) NOT NULL UNIQUE,
     PWD VARCHAR2(20) NOT NULL,
-    NICK VARCHAR2(10)  NOT NULL UNIQUE,
-    EMAIL VARCHAR2(30) NOT NULL,
+    NICK VARCHAR2(10)  NOT NULL,
     PHONE VARCHAR2(20) NOT NULL,
     ENROLLDAY DATE DEFAULT SYSDATE,
-    LEAVEDA DATE,
+    LEAVEDAY DATE,
     CATEGORY1 VARCHAR2(30),
     CATEGORY2 VARCHAR2(30),
     CATEGORY3 VARCHAR2(30)
 );
-
---?��?��-------------------------------------------------------------------------------
+INSERT INTO HONEYBEE VALUES('H1','1@1.com','admin','admin','admin',sysdate,null,null,null,null);
+--탈퇴-------------------------------------------------------------------------------
 
 CREATE TABLE LEAVEMEMBER
-(--?��?��?�� 멤버 ?��?��?�� ???��?��
+(--탈퇴한 멤버 데이터 저장소
     ID VARCHAR2(20),
     MCODE VARCHAR2(11),
     NICK VARCHAR2(10),
@@ -96,43 +94,58 @@ CREATE TABLE LEAVEMEMBER
     CONSTRAINT PK_LEAVEMEM PRIMARY KEY(ID,MCODE)    
 );
 
---?��로젝?��-------------------------------------------------------------------------------
+--프로젝트-------------------------------------------------------------------------------
 
 CREATE TABLE ENDPROJECT
 (
     PCODE VARCHAR2(13) PRIMARY KEY,
     NAME VARCHAR2(20) NOT NULL,
+    CONTENT VARCHAR2(3000) NOT NULL,
     SDATE DATE NOT NULL,
     EDATE DATE NOT NULL,
+    GMONEY NUMBER NOT NULL,
+    CMONEY NUMBER,
     LEADCODE VARCHAR2(11) NOT NULL,
+    PERMIT VARCHAR2(1) NOT NULL,
+    CATEGORY VARCHAR2(30) NOT NULL,
     CONSTRAINT FK_ENDPROMEM FOREIGN KEY(LEADCODE) REFERENCES  BLOOMER
 );
 
 CREATE TABLE CONPROJECT
-(--진행�? ?��로젝?��
+(--진행중 프로젝트
     PCODE VARCHAR2(13) PRIMARY KEY,
     NAME VARCHAR2(20) NOT NULL,
+    CONTENT VARCHAR2(3000) NOT NULL,
     SDATE DATE NOT NULL,
     EDATE DATE NOT NULL,
+    GMONEY NUMBER NOT NULL,
+    CMONEY NUMBER,
     LEADCODE VARCHAR2(11) NOT NULL,
+    PERMIT VARCHAR2(1) NOT NULL,
+    CATEGORY VARCHAR2(30) NOT NULL,
     CONSTRAINT FK_CONPROMEM FOREIGN KEY(LEADCODE) REFERENCES  BLOOMER(MBCODE)
 );
 
 CREATE TABLE PLANPROJECT
-(--?��?��?�� ?��로젝?��
+(--예정된 프로젝트
     PCODE VARCHAR2(13) PRIMARY KEY,
     NAME VARCHAR2(20) NOT NULL,
+    CONTENT VARCHAR2(3000) NOT NULL,
     SDATE DATE NOT NULL,
     EDATE DATE NOT NULL,
+    GMONEY NUMBER NOT NULL,
+    CMONEY NUMBER,
     LEADCODE VARCHAR2(11) NOT NULL,
+    PERMIT VARCHAR2(1) NOT NULL,
+    CATEGORY VARCHAR2(30) NOT NULL,
     CONSTRAINT FK_PLANPROMEM FOREIGN KEY(LEADCODE) REFERENCES  BLOOMER(MBCODE)
 );
 
 
---참여?��리스?��-------------------------------------------------------------------------------
+--참여자리스트-------------------------------------------------------------------------------
 
 CREATE TABLE ENDPARLIST
-(--종료?�� ?��로젝?��?�� 참여?�� 리스?��
+(--종료된 프로젝트의 참여자 리스트
     PCODE VARCHAR2(13),
     MCODE VARCHAR2(11),
     CONSTRAINT PK_PROANDMEN1 PRIMARY KEY(PCODE,MCODE),
@@ -141,7 +154,7 @@ CREATE TABLE ENDPARLIST
 );
 
 CREATE TABLE CONPARLIST
-(--진행�? ?��로젝?��?�� 참여?�� 리스?��
+(--진행중 프로젝트의 참여자 리스트
     PCODE VARCHAR2(13),
     MCODE VARCHAR2(11),
     CONSTRAINT PK_PROANDMEN2 PRIMARY KEY(PCODE,MCODE),
@@ -150,7 +163,7 @@ CREATE TABLE CONPARLIST
 );
 
 CREATE TABLE PLANPARLIST
-(--?��?��?�� ?��로젝?��?�� 참여?�� 리스?��
+(--예정된 프로젝트의 참여자 리스트
     PCODE VARCHAR2(13),
     MCODE VARCHAR2(11),
     CONSTRAINT PK_PROANDMEN3 PRIMARY KEY(PCODE,MCODE),
@@ -158,10 +171,10 @@ CREATE TABLE PLANPARLIST
     CONSTRAINT FK_PROANDMEM6 FOREIGN KEY(MCODE) REFERENCES  BLOOMER(MBCODE)
 );
 
---?��?��?��리스?��-------------------------------------------------------------------------------
+--후원자리스트-------------------------------------------------------------------------------
 
 CREATE TABLE ENDSPONLIST
-(--종료?�� ?��로젝?��?�� ?��?��?�� 리스?��
+(--종료된 프로젝트의 후원자 리스트
     PCODE VARCHAR2(13),
     MCODE VARCHAR2(11),
     CONSTRAINT PK_PROANDMEN4 PRIMARY KEY(PCODE,MCODE),
@@ -170,7 +183,7 @@ CREATE TABLE ENDSPONLIST
 );
 
 CREATE TABLE CONSPONLIST
-(--진행�? ?��로젝?��?�� ?��?��?�� 리스?��
+(--진행중 프로젝트의 후원자 리스트
    PCODE VARCHAR2(13),
     MCODE VARCHAR2(11),
     CONSTRAINT PK_PROANDMEN5 PRIMARY KEY(PCODE,MCODE),
@@ -179,7 +192,7 @@ CREATE TABLE CONSPONLIST
 );
 
 CREATE TABLE PLANSPONLIST
-(--?��?��?�� ?��로젝?��?�� ?��?��?�� 리스?��
+(--예정된 프로젝트의 후원자 리스트
     PCODE VARCHAR2(13),
     MCODE VARCHAR2(11),
     CONSTRAINT PK_PROANDMEN6 PRIMARY KEY(PCODE,MCODE),
@@ -188,10 +201,10 @@ CREATE TABLE PLANSPONLIST
 );
 
 
---?��로젝?��?��?��-------------------------------------------------------------------------------
+--프로젝트요약-------------------------------------------------------------------------------
 
 CREATE TABLE ENDBRIEF
-(--종료?�� ?��로젝?�� ?��?��
+(--종료된 프로젝트 요약
     PCODE VARCHAR2(13) PRIMARY KEY,
     CONTENT VARCHAR2(200) NOT NULL,
     MAINIMAGE VARCHAR2(100) NOT NULL,
@@ -206,7 +219,7 @@ CREATE TABLE ENDBRIEF
 );
 
 CREATE TABLE CONBRIEF
-(--진행�? ?��로젝?�� ?��?��
+(--진행중 프로젝트 요약
     PCODE VARCHAR2(13) PRIMARY KEY,
     CONTENT VARCHAR2(200) NOT NULL,
     MAINIMAGE VARCHAR2(100) NOT NULL,
@@ -221,7 +234,7 @@ CREATE TABLE CONBRIEF
 );
 
 CREATE TABLE PLANBRIEF
-(--?��?��?�� ?��로젝?�� ?��?��
+(--예정된 프로젝트 요약
     PCODE VARCHAR2(13) PRIMARY KEY,
     CONTENT VARCHAR2(200) NOT NULL,
     MAINIMAGE VARCHAR2(100) NOT NULL,
@@ -235,10 +248,10 @@ CREATE TABLE PLANBRIEF
     CONSTRAINT FK_BRIEF3 FOREIGN KEY(PCODE) REFERENCES  PLANPROJECT(PCODE)
 );
 
---?��주묻?��질문-------------------------------------------------------------------------------
+--자주묻는질문-------------------------------------------------------------------------------
 
 CREATE TABLE ENDFAQ
-(--종료?�� ?��로젝?�� ?��주묻?��질문
+(--종료된 프로젝트 자주묻는질문
     PCODE VARCHAR2(13) PRIMARY KEY,
     EINDEX NUMBER NOT NULL UNIQUE,
     QUESTION VARCHAR2(100) NOT NULL,
@@ -247,7 +260,7 @@ CREATE TABLE ENDFAQ
 );
 
 CREATE TABLE CONFAQ
-(--진행�? ?��로젝?�� ?��주묻?��질문
+(--진행중 프로젝트 자주묻는질문
     PCODE VARCHAR2(13) PRIMARY KEY,
     CINDEX NUMBER(1) NOT NULL UNIQUE,
     QUESTION VARCHAR2(100) NOT NULL,
@@ -256,7 +269,7 @@ CREATE TABLE CONFAQ
 );
 
 CREATE TABLE PLANFAQ
-(--종료?�� ?��로젝?�� ?��주묻?��질문
+(--종료된 프로젝트 자주묻는질문
     PCODE VARCHAR2(13) PRIMARY KEY,
     PINDEX NUMBER(1) NOT NULL UNIQUE,
     QUESTION VARCHAR2(100) NOT NULL,
@@ -264,10 +277,10 @@ CREATE TABLE PLANFAQ
     CONSTRAINT FK_BRIEFFAQ3 FOREIGN KEY(PCODE) REFERENCES  PLANBRIEF(PCODE)
 );
 
---?��벤트---------------------------------------------------------------------------
+--이벤트---------------------------------------------------------------------------
 
 CREATE TABLE ENDEVENT
-(--종료?�� ?��벤트
+(--종료된 이벤트
     PCODE VARCHAR2(13) PRIMARY KEY,
     EINDEX NUMBER(1) NOT NULL UNIQUE,
     TITLE VARCHAR2(100) NOT NULL,
@@ -278,7 +291,7 @@ CREATE TABLE ENDEVENT
 );
 
 CREATE TABLE PLANEVENT
-(--?��?��?�� ?��벤트
+(--예정된 이벤트
     PCODE VARCHAR2(13) PRIMARY KEY,
     PINDEX NUMBER(1) NOT NULL UNIQUE,
     TITLE VARCHAR2(100) NOT NULL,
@@ -289,7 +302,7 @@ CREATE TABLE PLANEVENT
 );
 
 CREATE TABLE CONENDEVENT
-(--진행�? ?��로젝?��?�� 종료?�� ?��벤트
+(--진행중 프로젝트의 종료된 이벤트
     PCODE VARCHAR2(13) PRIMARY KEY,
     CINDEX NUMBER(1) NOT NULL UNIQUE,
     TITLE VARCHAR2(100) NOT NULL,
@@ -300,7 +313,7 @@ CREATE TABLE CONENDEVENT
 );
 
 CREATE TABLE CONEVENT
-(--진행�? ?��로젝?��?�� 진행�? ?��벤트
+(--진행중 프로젝트의 진행중 이벤트
     PCODE VARCHAR2(13) PRIMARY KEY,
     CINDEX NUMBER(1) NOT NULL UNIQUE,
     TITLE VARCHAR2(100) NOT NULL,
@@ -311,7 +324,7 @@ CREATE TABLE CONEVENT
 );
 
 CREATE TABLE CONPLANEVENT
-(--진행�? ?��로젝?��?�� ?��?��?�� ?��벤트
+(--진행중 프로젝트의 예정된 이벤트
     PCODE VARCHAR2(13) PRIMARY KEY,
     CINDEX NUMBER(1) NOT NULL UNIQUE,
     TITLE VARCHAR2(100) NOT NULL,
@@ -321,10 +334,10 @@ CREATE TABLE CONPLANEVENT
     CONSTRAINT FK_CONEVENT3 FOREIGN KEY(PCODE) REFERENCES  CONPROJECT(PCODE)
 );
 
---공�??��?��---------------------------------------------------------------------------
+--공지사항---------------------------------------------------------------------------
 
 CREATE TABLE CONNOTICE
-(--진행�? ?��로젝?��?�� 공�??��?�� 게시?��
+(--진행중 프로젝트의 공지사항 게시판
     BCODE VARCHAR2(11) PRIMARY KEY,
     PCODE VARCHAR2(13),
     TITLE VARCHAR2(50) NOT NULL,
@@ -335,7 +348,7 @@ CREATE TABLE CONNOTICE
 );
 
 CREATE TABLE PLANNOTICE
-(--?��?��?�� ?��로젝?��?�� 공�??��?�� 게시?��
+(--예정된 프로젝트의 공지사항 게시판
     BCODE VARCHAR2(11) PRIMARY KEY,
     PCODE VARCHAR2(13),
     TITLE VARCHAR2(50) NOT NULL,
@@ -345,10 +358,10 @@ CREATE TABLE PLANNOTICE
     CONSTRAINT FK_NBOARDPRO2 FOREIGN KEY(PCODE) REFERENCES  PLANPROJECT(PCODE)
 );
 
---?��로젝?��게시?��---------------------------------------------------------------------------
+--프로젝트게시판---------------------------------------------------------------------------
 
 CREATE TABLE CONPBOARD
-(--진행�? ?��로젝?��?�� ?��로젝?�� 게시?��
+(--진행중 프로젝트의 프로젝트 게시판
     BCODE VARCHAR2(11) PRIMARY KEY,
     PCODE VARCHAR2(13),
     TITLE VARCHAR2(50) NOT NULL,
@@ -358,10 +371,10 @@ CREATE TABLE CONPBOARD
     CONSTRAINT FK_BOARDPRO FOREIGN KEY(PCODE) REFERENCES  CONPROJECT(PCODE)
 );
 
---?��?��게시?��---------------------------------------------------------------------------
+--자유게시판---------------------------------------------------------------------------
 
 CREATE TABLE CONFBOARD
-(--진행�? ?��로젝?��?�� ?��?�� 게시?��
+(--진행중 프로젝트의 자유 게시판
     BCODE VARCHAR2(11) PRIMARY KEY,
     PCODE VARCHAR2(13),
     TITLE VARCHAR2(50) NOT NULL,
@@ -372,7 +385,7 @@ CREATE TABLE CONFBOARD
 );
 
 CREATE TABLE PLANFBOARD
-(--?��?��?�� ?��로젝?��?�� ?��?�� 게시?��
+(--예정된 프로젝트의 자유 게시판
     BCODE VARCHAR2(11) PRIMARY KEY,
     PCODE VARCHAR2(13),
     TITLE VARCHAR2(50) NOT NULL,
@@ -382,10 +395,10 @@ CREATE TABLE PLANFBOARD
     CONSTRAINT FK_FBOARDPRO2 FOREIGN KEY(PCODE) REFERENCES  PLANPROJECT(PCODE)
 );
 
---?��?��?���?---------------------------------------------------------------------------
+--삭제된글---------------------------------------------------------------------------
 
 CREATE TABLE DELETEBOARD
-(--?��?��?�� 게시�? ?��?��보�?
+(--삭제된 게시글 임시보관
     BCODE VARCHAR2(11) PRIMARY KEY,
     PCODE VARCHAR2(13),
     TITLE VARCHAR2(50) NOT NULL,
@@ -394,10 +407,10 @@ CREATE TABLE DELETEBOARD
     WRITER VARCHAR2(11) NOT NULL
 );
 
---첨�??��?��---------------------------------------------------------------------------
+--첨부파일---------------------------------------------------------------------------
 
 CREATE TABLE CONNFILE
-(--진행�? ?��로젝?�� 공�??��?�� 첨�??��?��
+(--진행중 프로젝트 공지사항 첨부파일
     BCODE VARCHAR2(11) PRIMARY KEY,
     LINK1 VARCHAR2(1000),
     LINK2 VARCHAR2(1000),
@@ -406,7 +419,7 @@ CREATE TABLE CONNFILE
 );
 
 CREATE TABLE CONPFILE
-(--진행�? ?��로젝?�� ?��로젝?�� 게시?�� 첨�??��?��
+(--진행중 프로젝트 프로젝트 게시판 첨부파일
     BCODE VARCHAR2(11) PRIMARY KEY,
     LINK1 VARCHAR2(1000),
     LINK2 VARCHAR2(1000),
@@ -415,7 +428,7 @@ CREATE TABLE CONPFILE
 );
 
 CREATE TABLE CONFFILE
-(--진행�? ?��로젝?�� ?��?�� 게시?�� 첨�??��?��
+(--진행중 프로젝트 자유 게시판 첨부파일
     BCODE VARCHAR2(11) PRIMARY KEY,
     LINK1 VARCHAR2(1000),
     LINK2 VARCHAR2(1000),
@@ -423,10 +436,10 @@ CREATE TABLE CONFFILE
     CONSTRAINT FK_CFILE3 FOREIGN KEY(BCODE) REFERENCES  CONFBOARD(BCODE)
 );
 
---?��?��------------
+--예정------------
 
 CREATE TABLE PLANNFILE
-(--?��?��?�� ?��로젝?�� 공�??��?�� 첨�??��?��
+(--예정된 프로젝트 공지사항 첨부파일
     BCODE VARCHAR2(11) PRIMARY KEY,
     LINK1 VARCHAR2(1000),
     LINK2 VARCHAR2(1000),
@@ -435,7 +448,7 @@ CREATE TABLE PLANNFILE
 );
 
 CREATE TABLE PLANFFILE
-(--?��?��?�� ?��로젝?�� ?��?�� 게시?�� 첨�??��?��
+(--예정된 프로젝트 자유 게시판 첨부파일
     BCODE VARCHAR2(11) PRIMARY KEY,
     LINK1 VARCHAR2(1000),
     LINK2 VARCHAR2(1000),
@@ -443,10 +456,10 @@ CREATE TABLE PLANFFILE
     CONSTRAINT FK_PFILE2 FOREIGN KEY(BCODE) REFERENCES  PLANFBOARD(BCODE)
 );
 
---?���?---------------------------------------------------------------------------
+--댓글---------------------------------------------------------------------------
 
 CREATE TABLE CONPCOMMENT
-(--진행�? ?��로젝?�� ?��로젝?�� 게시?�� ?���?
+(--진행중 프로젝트 프로젝트 게시판 댓글
     BCODE VARCHAR2(11),
     CINDEX NUMBER(6),
     TOPINDEX NUMBER(6),
@@ -458,7 +471,7 @@ CREATE TABLE CONPCOMMENT
 );
 
 CREATE TABLE CONFCOMMENT
-(--진행�? ?��로젝?�� ?��?�� 게시?�� ?���?
+(--진행중 프로젝트 자유 게시판 댓글
     BCODE VARCHAR2(11),
     CINDEX NUMBER(6),
     TOPINDEX NUMBER(6),
@@ -470,7 +483,7 @@ CREATE TABLE CONFCOMMENT
 );
 
 CREATE TABLE PLANFCOMMENT
-(--?��?��?�� ?��로젝?�� ?��?�� 게시?�� ?���?
+(--예정된 프로젝트 자유 게시판 댓글
     BCODE VARCHAR2(11),
     CINDEX NUMBER(6),
     TOPINDEX NUMBER(6),
@@ -480,3 +493,14 @@ CREATE TABLE PLANFCOMMENT
     CONSTRAINT PK_COMEN3 PRIMARY KEY(BCODE, CINDEX),
     CONSTRAINT FK_CCOMEN3 FOREIGN KEY(BCODE) REFERENCES  PLANFBOARD(BCODE)
 );
+
+COMMIT;
+
+select *
+from HONEYBEE;
+
+select *
+from BLOOMER;
+
+update BLOOMER set LEADER='L' WHERE MBCODE='B2';
+commit;

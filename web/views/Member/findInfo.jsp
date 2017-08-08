@@ -25,7 +25,9 @@
 				<button type="button" name="buttonauth" class="auth">인증번호 받기</button>
 				<input type="text" placeholder="인증번호" name="inputauth" required>
 				
+				<button type="button" id="re" style="background-color: red; float:right;">취소</button>
 				<button type="submit" name="findMember">찾기</button>
+				
 			</div></div>
 	</div>
 </body>

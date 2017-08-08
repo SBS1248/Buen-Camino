@@ -1,7 +1,7 @@
 $(function() {
 		$('button[name=cancle]').click(function()
 				{
-					window.location.href="/Floracion/logIn.jsp";
+					location.href="/Floracion/main.jsp";
 				});
 		
 		$('button[name=edit]').click(function()
@@ -18,5 +18,9 @@ $(function() {
 						alert("암호와 암호 확인을 다시 확인해주세요.");
 					}
 					
+				});
+		$('button[name=changeCate]').click(function()
+				{
+					location.href="/Floracion/views/Member/memberCate.jsp";
 				});
 	});

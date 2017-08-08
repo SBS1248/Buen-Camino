@@ -32,23 +32,25 @@ public class MemberFindServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		String email=request.getParameter("email");
 		String radio=request.getParameter("radio");
 		
 		Member member=new MemberService().findMember(email,radio);
-		
+		System.out.println(member);
 		RequestDispatcher view=null;
 		
 		if(member!=null) 
 		{
-			view=request.getRequestDispatcher("/editSign.jsp");
+			view=request.getRequestDispatcher("/views/Member/editSign.jsp");
 			
 			request.setAttribute("member", member);
 			view.forward(request, response);
 		}
 		else 
 		{
-			view=request.getRequestDispatcher("/signIn.jsp");
+			view=request.getRequestDispatcher("/views/Member/signIn.jsp");
 			
 			request.setAttribute("email", email);
 			view.forward(request, response);			
